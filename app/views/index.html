@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hackaton</title>
+  </head>
+  <body>
+    <h1>Title</h1>
+
+    {% for person in people: %}
+      <p>{{ person.first_name }}</p>
+      <p>{{ person.last_name }}</p>
+      <p>{{ person.university }}</p>
+      <p>{{ person.rank|int }}</p>
+      <form method="post">
+        <input type="hidden" name="id" value={{ person.id }}>
+        <button type="submit" name="vote" value="up">Upvote</button>
+        <button type="submit" name="vote" value="down">Downvote</button>
+      </form>
+      <hr>
+    {% endfor %}
+
+
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  </body>
+</html>
