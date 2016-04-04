@@ -1,6 +1,7 @@
 $(document).ready(function(){
     createGrid(125);
     loadPeople();
+    $('[data-toggle="popover"]').popover();
 });
 
 $(window).resize(function() {
