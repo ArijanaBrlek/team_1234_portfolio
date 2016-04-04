@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.structure.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.theme.min.css') }}">
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
+          <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome/css/font-awesome-animated.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css') }}">
   </head>
   <body>
@@ -33,9 +34,10 @@
             {{ member.first_name }}
             <br/>
             <b>{{ member.last_name }}</b>
-          </div>
-          </div>
+          </div>      
+        </div> 
       </div>
+       
       <div class="back">
        <img class='member-image' src="/static/img/member_{{ member.id }}.jpg" />
       </div>
@@ -44,26 +46,20 @@
 
   {% raw %}
     <script id="member-template-info" type="x-tmpl-mustache">
-      <div class="front">
-      </div>
-      <div class="back">
+     
          <div>
-          <div class='col-sm-12 member-text member-text-large'>
-              {{ member.first_name }} <br/> {{ member.last_name }}
-          </div>
-          <div class='col-sm-12 margin-top member-text member-text-mid'>
-              23 <br> {{ member.university }}
-          </div>
+            <div class='col-sm-12 member-text member-text-large'>
+                {{ member.first_name }} <br/> {{ member.last_name }}
+            </div>
+            <div class='col-sm-12 margin-top member-text member-text-mid'>
+                23 <br> {{ member.university }}
+            </div>
         </div>
-      </div>
     </script>
   {% endraw %}
 
   {% raw %}
     <script id="member-template-links" type="x-tmpl-mustache">
-      <div class="front">
-      </div>
-      <div class="back">
 
         <div>
             <div class='col-sm-12 center nopadding margin-top'>
@@ -79,7 +75,15 @@
               </div>
             </div>
         </div>
-      </div>
+
+    </script>
+  {% endraw %}
+
+  {% raw %}
+    <script id="member-template-skills" type="x-tmpl-mustache">
+        <div class='col-sm-12 center margin-top-20'>
+            <i class="fa fa-wrench faa-wrench fa-5x animated-hover"></i>
+          </div>
     </script>
   {% endraw %}
 
