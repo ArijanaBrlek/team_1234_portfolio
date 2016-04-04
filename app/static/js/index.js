@@ -30,13 +30,15 @@ $(document).on('click','.member_cell', function(){
 
     var template = $('#member-template-info').html();
     var rendered = Mustache.render(template, {member: member});
-    $cellLeft.html(rendered); // nisam ziher da trebaju sve ove klase
+    $cellLeft.html(rendered).addClass('member_cell_' + id);
     $cellLeft.flip({trigger: 'manual'});
     setTimeout(function() { $cellLeft.flip(true) }, 50);
 
     template = $('#member-template-links').html();
     rendered = Mustache.render(template, {member: member});
-    $cellRight.html(rendered).addClass('member_cell member_cell_' + id);
+    $cellRight.html(rendered).addClass('member_cell_' + id);
+    $cellRight.flip({trigger: 'manual'});
+    setTimeout(function() { $cellRight.flip(true) }, 50);
 
     template = $('#member-template-links').html();
     rendered = Mustache.render(template, {member: member});
