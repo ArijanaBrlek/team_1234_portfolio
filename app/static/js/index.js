@@ -56,7 +56,28 @@ function loadPeople() {
     });
 }
 
+function generatePeoplePositions(cellsInRow, cellsInColumn) {
+    for(var i = 0; i < people.length; ++i) {
+        var iter = 0, ok;
+        do {
+            ++iter;
+            people[i].x = randomIntFromInterval(1, cellsInRow - 2);
+            people[i].y = randomIntFromInterval(1, cellsInColumn - 2);
 
+            ok = true;
+            for(var j = 0; j < i; ++j) {
+                var diffX = Math.abs(people[j].x - people[i].x);
+                var diffY = Math.abs(people[j].y - people[i].y);
+                if(diffX == 1 && diffY == 1) continue;
+                if(diffX <= 1 && diffY <= 1) {
+                    // console.log(people[i].x, people[i].y, people[j].x, people[j].y);
+                    ok = false;
+                    break;
+                }
+            }
+        } while (!ok && iter < 100)
+    }
+}
 
 
 
@@ -76,11 +97,7 @@ function createGrid(size) {
     var cellsInRow = ratioH + 1;
     var cellsInColumn = ratioW + 1;
 
-    // @TODO: make sure generated positions are unique
-    for(var i = 0; i < people.length; ++i) {
-        people[i].x = randomIntFromInterval(1, cellsInRow - 2);
-        people[i].y = randomIntFromInterval(1, cellsInColumn - 2);
-    }
+    generatePeoplePositions(cellsInRow, cellsInColumn);
 
     for (var i = 0; i < cellsInRow; i++) {
         for(var p = 0; p < cellsInColumn; p++){
