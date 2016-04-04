@@ -172,3 +172,8 @@ body {
 .link-card {
     z-index: 100;
 }
+
+.popover{
+    max-width:500px; /* Max Width of the popover (depending on the container!) */
+    width: 200%;
+}
