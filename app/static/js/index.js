@@ -22,7 +22,7 @@ $(document).on('click','.member_cell', function(){
     var $cellLeft = $('.cell[data-x="' + x + '"][data-y="' + (y-1) + '"]');
     console.log("left cell", $cellLeft);
 
-    var $cellRight = $('.cell[data-x="' + x + '"][data-y="' + (y+1) + '"]');
+    var $cellRight = $('.cell[data-x="' + x + '"][data-y="' + (parseInt(y, 10)+1) + '"]');
     console.log("right cell", $cellRight);
 
     var $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
