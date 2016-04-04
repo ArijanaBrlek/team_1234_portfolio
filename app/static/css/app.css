@@ -176,4 +176,16 @@ body {
 .popover{
     max-width:500px; /* Max Width of the popover (depending on the container!) */
     width: 200%;
+    overflow: visible;
+    border-radius: 0;
+}
+
+.popover-title {
+    color: darggray;
+    font-size: 20px;
+}
+
+.popover-content {
+    color: black;
+    font-size: 14px;
 }
