@@ -1,6 +1,8 @@
 from app import app, db
-from flask import request, render_template
+from flask import request, render_template, jsonify
 import random
+import json
+from bson import json_util
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,3 +22,9 @@ def index():
         db.people.update_one({"id": int(id)}, {"$set": {"rank": new_rank}})
     people = db.people.find()
     return render_template('index.html', people=people)
+
+@app.route('/people', methods=['GET'])
+def get_people():
+    people = db.people.find()
+    people_list  = list(people)
+    return json.dumps(people_list, default=json_util.default)
