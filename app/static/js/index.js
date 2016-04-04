@@ -7,22 +7,33 @@ $(window).resize(function() {
     createGrid(125);
 });
 
-// $(document).on('mouseenter','.member_cell', function(){
-//     var id = $(this).attr('data-id');
+$(document).on('click','.member_cell', function(){
+    var id = $(this).attr('data-id'),
+        x = $(this).attr('data-x'),
+        y = $(this).attr('data-y');
 
-//     var member;
-//     for(var i = 0; i < people.length; ++i) {
-//         if(people[i].id == id) {
-//             member = people[i];
-//         }
-//     }
+    var member;
+    for(var i = 0; i < people.length; ++i) {
+        if(people[i].id == id) {
+            member = people[i];
+        }
+    }
 
-//     var template = $('#member-picture-template').html();
-//     var rendered = Mustache.render(template, {member: member});
-//     $(this).html(rendered);
-// }).on('mouseleave','.member_cell', function(){
-//     //render template
-// });
+    var $cellLeft = $('.cell[data-x="' + x + '"][data-y="' + (y-1) + '"]');
+    console.log("left cell", $cellLeft);
+
+    var $cellRight = $('.cell[data-x="' + x + '"][data-y="' + (y+1) + '"]');
+    console.log("right cell", $cellRight);
+
+    var $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
+    console.log("above cell", $cellAbove);
+
+    var template = $('#member-template').html();
+    var rendered = Mustache.render(template, {member: member});
+    $cellLeft.html(rendered).addClass('member_cell member_cell_' + id); // nisam ziher da trebaju sve ove klase
+    $cellRight.html(rendered).addClass('member_cell member_cell_' + id); // izrenderirat drugi template za svaki cell
+    $cellAbove.html(rendered).addClass('member_cell member_cell_' + id);
+});
 
 var people = [];
 function loadPeople() {
@@ -54,8 +65,8 @@ function createGrid(size) {
 
     // @TODO: make sure generated positions are unique
     for(var i = 0; i < people.length; ++i) {
-        people[i].x = randomIntFromInterval(1, cellsInRow - 1);
-        people[i].y = randomIntFromInterval(1, cellsInColumn - 1);
+        people[i].x = randomIntFromInterval(1, cellsInRow - 2);
+        people[i].y = randomIntFromInterval(1, cellsInColumn - 2);
     }
 
     for (var i = 0; i < cellsInRow; i++) {
