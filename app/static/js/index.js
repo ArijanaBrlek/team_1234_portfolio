@@ -1,7 +1,6 @@
 $(document).ready(function(){
     createGrid(125);
     loadPeople();
-    $('[data-toggle="popover"]').popover();
 });
 
 $(window).resize(function() {
@@ -44,6 +43,7 @@ $(document).on('click','.member_cell', function(){
     template = $('#member-template-skills').html();
     rendered = Mustache.render(template, {member: member});
     $cellAbove.html(rendered).addClass('member_cell_' + id);
+    $cellAbove.find('[data-toggle="popover"]').popover();
     $cellAbove.flip({trigger: 'manual'});
     setTimeout(function() { $cellAbove.flip(true) }, 50);
 });
