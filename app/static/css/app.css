@@ -48,12 +48,11 @@ body {
     z-index: 500;
     font-size: 30px;
     color: white;
-    font-family: 'Helvetica';
-    margin-left: 20px;
+    font-family: 'Courier New';
+    margin-left: 10px;
     margin-top: 20px;
 }
 .team {
-    font-family: '';
 }
 
 .member1 {
@@ -182,7 +181,7 @@ body {
 
 .popover-title {
     color: darggray;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .popover-content {
