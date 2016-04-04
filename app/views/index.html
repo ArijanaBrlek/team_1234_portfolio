@@ -22,20 +22,23 @@
 
   {% raw %}
   <script id="member-template" type="x-tmpl-mustache">
-      <div class='col-sm-12 member_number pull-right'>
-        0{{ member.id }}
+    <div class='col-sm-12 member_number pull-right'>
+      0{{ member.id }}
     </div>
     <div class='col-sm-12 member_name'>
-        {{ member.first_name }}
-        <br/>
-        <b>{{ member.last_name }}</b>
-    </div>
-
+      {{ member.first_name }}
+      <br/>
+      <b>{{ member.last_name }}</b>
+    </div>  
   </script>
   {% endraw %}
 
+  {% raw %}
+  <script id="member-picture-template" type="x-tmpl-mustache">
+       <img class='member-image'  src="/static/img/member_1.jpg" />
+  </script>
+  {% endraw %}
   <div class="container">
-
   </div>
 
 <!--     {% for person in people: %}

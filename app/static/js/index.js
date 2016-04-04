@@ -7,6 +7,11 @@ $(window).resize(function() {
     createGrid(125);
 });
 
+$(document).on('mouseenter','.my-elements', function(){
+   //picture
+}).on('mouseleave','.my-elements', function(){
+    //render template
+});
 
 function createGrid(size) {
     var ratioW = Math.floor($(window).width()/size),
@@ -53,7 +58,6 @@ function createGrid(size) {
     	var member = people[i];
     	var $cell = $('.cell[data-x="' + member.x + '"][data-y="' + member.y + '"]');
     	$cell.addClass('member_cell_' + member.id);
-
         var template = $('#member-template').html();
         var rendered = Mustache.render(template, {member: member});
         $cell.html(rendered);
