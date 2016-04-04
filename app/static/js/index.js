@@ -1,8 +1,5 @@
 $(document).ready(function(){
     createGrid(125);
-$("#card").flip();
-
-    
 });
 
 $(window).resize(function() {
@@ -64,6 +61,7 @@ function createGrid(size) {
         var template = $('#member-template').html();
         var rendered = Mustache.render(template, {member: member});
         $cell.html(rendered);
+        $cell.flip({ trigger: 'hover' });
     };
 }
 
