@@ -1,6 +1,8 @@
 $(document).ready(function(){
-
     createGrid(125);
+$("#card").flip();
+
+    
 });
 
 $(window).resize(function() {
@@ -12,6 +14,7 @@ $(document).on('mouseenter','.my-elements', function(){
 }).on('mouseleave','.my-elements', function(){
     //render template
 });
+
 
 function createGrid(size) {
     var ratioW = Math.floor($(window).width()/size),
