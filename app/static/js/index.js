@@ -40,9 +40,11 @@ $(document).on('click','.member_cell', function(){
     $cellRight.flip({trigger: 'manual'});
     setTimeout(function() { $cellRight.flip(true) }, 50);
 
-    template = $('#member-template-links').html();
+    template = $('#member-template-skills').html();
     rendered = Mustache.render(template, {member: member});
-    $cellAbove.html(rendered).addClass('member_cell member_cell_' + id);
+    $cellAbove.html(rendered).addClass('member_cell_' + id);
+    $cellAbove.flip({trigger: 'manual'});
+    setTimeout(function() { $cellAbove.flip(true) }, 50);
 });
 
 var people = [];
