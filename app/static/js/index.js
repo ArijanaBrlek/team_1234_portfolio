@@ -64,18 +64,30 @@ function generatePeoplePositions(cellsInRow, cellsInColumn) {
             people[i].x = randomIntFromInterval(1, cellsInRow - 2);
             people[i].y = randomIntFromInterval(1, cellsInColumn - 2);
 
+            if(people[i].x == 1 && people[i].y < 3) {
+                ok = false;
+                continue;
+            }
+
             ok = true;
             for(var j = 0; j < i; ++j) {
                 var diffX = Math.abs(people[j].x - people[i].x);
                 var diffY = Math.abs(people[j].y - people[i].y);
-                if(diffX == 1 && diffY == 1) continue;
-                if(diffX <= 1 && diffY <= 1) {
-                    // console.log(people[i].x, people[i].y, people[j].x, people[j].y);
-                    ok = false;
-                    break;
+                // if(diffX == 1 && diffY == 1) continue;
+                if(iter < 100) {
+                    if(diffX <= 1 && diffY <= 1) {
+                        // console.log(people[i].x, people[i].y, people[j].x, people[j].y);
+                        ok = false;
+                        break;
+                    }
+                } else {
+                    if(diffX == 0 && diffY == 0) {
+                        ok = false;
+                        break;
+                    }
                 }
             }
-        } while (!ok && iter < 100)
+        } while (!ok && iter < 200)
     }
 }
 
