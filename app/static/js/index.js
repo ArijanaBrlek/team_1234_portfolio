@@ -28,10 +28,18 @@ $(document).on('click','.member_cell', function(){
     var $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
     console.log("above cell", $cellAbove);
 
-    var template = $('#member-template').html();
+    var template = $('#member-template-info').html();
     var rendered = Mustache.render(template, {member: member});
-    $cellLeft.html(rendered).addClass('member_cell member_cell_' + id); // nisam ziher da trebaju sve ove klase
-    $cellRight.html(rendered).addClass('member_cell member_cell_' + id); // izrenderirat drugi template za svaki cell
+    $cellLeft.html(rendered); // nisam ziher da trebaju sve ove klase
+    $cellLeft.flip({trigger: 'manual'});
+    setTimeout(function() { $cellLeft.flip(true) }, 50);
+
+    template = $('#member-template-links').html();
+    rendered = Mustache.render(template, {member: member});
+    $cellRight.html(rendered).addClass('member_cell member_cell_' + id);
+
+    template = $('#member-template-links').html();
+    rendered = Mustache.render(template, {member: member});
     $cellAbove.html(rendered).addClass('member_cell member_cell_' + id);
 });
 
