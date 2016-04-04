@@ -16,13 +16,16 @@ body {
 
 .container {
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 .grid {
     background: transparent;
     border: 1px solid #300;
     border-width: 1px 0 0 1px;
+    z-index: -1;
+    position: absolute;
+    top: 0;
 }
 
 .grid div {
@@ -41,4 +44,75 @@ body {
     background: black;
     opacity: 0.7;
     transition: background 0.25s;
+}
+
+.logo {
+    z-index: 500;
+    font-size: 30px;
+    color: white;
+    font-family: 'Helvetica';
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.team {
+    font-family: '';
+}
+
+.member1 {
+    color: #F25C5C;
+}
+
+.member2 {
+    color: #2FC26A;
+}
+
+.member3 {
+    color: #EBEB72;
+}
+
+.member4 {
+    color: #53A3CF;
+}
+
+.member_cell_1 {
+    background-color: #F25C5C;
+    opacity: 1;
+}
+.member_cell_1:hover {
+    background-color: #F25C5C;
+    opacity: 1;
+    border: 1px solid #F25C5C;
+}
+
+.member_cell_2 {
+    background-color: #2FC26A;
+    opacity: 1;
+}
+.member_cell_2:hover {
+    background-color: #2FC26A;
+    opacity: 1;
+    border: 1px solid #2FC26A;
+    border-width: 0 1px 1px 0;
+}
+
+.member_cell_3 {
+    background-color: #EBEB72;
+    opacity: 1;
+}
+.member_cell_3:hover {
+    background-color: #EBEB72;
+    opacity: 1;
+        border: 1px solid #EBEB72;
+    border-width: 0 1px 1px 0;
+}
+
+.member_cell_4 {
+    background-color: #53A3CF;
+    opacity: 1;
+}
+.member_cell_4:hover {
+    background-color: #53A3CF;
+    opacity: 1;
+    border: 1px solid #53A3CF;
+    border-width: 0 1px 1px 0;
 }
