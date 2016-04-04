@@ -34,7 +34,7 @@ body {
 
 .cell{
     opacity: 0.6;
-    -webkit-transition: background 2s;
+    transition: background 2s;
 }
 
 .cell:hover{
