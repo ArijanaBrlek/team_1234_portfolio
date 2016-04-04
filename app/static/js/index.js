@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     createGrid(125);
-    loadTemplates();
 });
 
 $(window).resize(function() {
@@ -23,10 +22,10 @@ function createGrid(size) {
     var leftoverSize = ratioW * size % (size -1);
 
     var people = [
-    	{id: 1, x: 2, y: 5},
-    	{id: 2, x: 2, y: 6},
-    	{id: 3, x: 2, y: 7},
-    	{id: 4, x: 2, y: 8},
+    	{id: 1, first_name: 'Sven', last_name: 'Vidak', x: 2, y: 5},
+    	{id: 2, first_name: 'Arijana', last_name: 'Brlek', x: 2, y: 6},
+    	{id: 3, first_name: 'Marko', last_name: 'Sertić', x: 2, y: 7},
+    	{id: 4, first_name: 'Nino', last_name: 'Uzelac', x: 2, y: 8},
     ];
 
     var cellsInRow = ratioH + 1;
@@ -52,8 +51,12 @@ function createGrid(size) {
 
     for (var i = people.length - 1; i >= 0; i--) {
     	var member = people[i];
-    	$('.cell[data-x="' + member.x + '"][data-y="' + member.y + '"]')
-    	.addClass('member_cell_' + member.id);
+    	var $cell = $('.cell[data-x="' + member.x + '"][data-y="' + member.y + '"]');
+    	$cell.addClass('member_cell_' + member.id);
+
+        var template = $('#member-template').html();
+        var rendered = Mustache.render(template, {member: member});
+        $cell.html(rendered);
     };
 }
 
