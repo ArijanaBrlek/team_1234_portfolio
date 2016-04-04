@@ -169,3 +169,6 @@ body {
 .black {
     color: black;
 }
+.link-card {
+    z-index: 100;
+}
