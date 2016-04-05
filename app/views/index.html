@@ -9,10 +9,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.structure.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery-ui.theme.min.css') }}">
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome/css/font-awesome-animated.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome/css/font-awesome-animated.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css') }}">
   </head>
+
   <body>
+  
   <div class="col-sm-4 logo">
     <span class="team">team://</span><span class="member1">01.</span><span class="member2">02.</span><span class="member3">03.</span><span class="member4">04</span>
   </div>
@@ -24,21 +26,8 @@
   {% include 'templates/member/skills.html' %}
   {% include 'templates/member/vote.html' %}
 
-  <div class="container">
-  </div>
+  <div class="container"></div>
 
-<!--     {% for person in people: %}
-      <p>{{ person.first_name }}</p>
-      <p>{{ person.last_name }}</p>
-      <p>{{ person.university }}</p>
-      <p>{{ person.rank|int }}</p>
-      <form method="post">
-        <input type="hidden" name="id" value={{ person.id }}>
-        <button type="submit" name="vote" value="up">Upvote</button>
-        <button type="submit" name="vote" value="down">Downvote</button>
-      </form>
-      <hr>
-    {% endfor %} -->
 
     <script src="{{ url_for('static', filename='js/jquery-1.12.2.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
