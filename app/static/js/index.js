@@ -36,6 +36,17 @@ function findFirstAvailableCell(x, y) {
     return $cell;
 }
 
+function findMemberById(id) {
+    var member;
+    for(var i = 0; i < people.length; ++i) {
+        if(people[i].id == id) {
+            member = people[i];
+        }
+    }
+
+    return member;
+}
+
 function onMemberCellClick() {
     var id = $(this).attr('data-id'),
         x = parseInt($(this).attr('data-x'), 10),
@@ -151,6 +162,8 @@ function loadPeople() {
 function trackView(member) {
     $.post( "/upvote/" + member.id, function(data) {
         // console.log(data);
+        member.rank = data.rank;
+        $('.member_rank[data-id="' + member.id + '"]').html(member.rank);
     });
 }
 
