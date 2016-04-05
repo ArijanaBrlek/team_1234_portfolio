@@ -9,15 +9,15 @@ $(window).resize(function() {
 
 $(document).on('click','.member_cell', function(){
     if($('.close-card').length > 0) {
-        // some other card is opened, wait until animations completed before starting this
+        // some other card is opened, wait until animations complete before starting this one
         $('.close-card').click();
 
         var self = this;
         setTimeout(function () {
-            clickMemberCell.call(self);
+            onMemberCellClick.call(self);
         }, 300);
     } else {
-        clickMemberCell.call(this);
+        onMemberCellClick.call(this);
     }
 });
 
@@ -36,7 +36,7 @@ function findFirstAvailableCell(x, y) {
     return $cell;
 }
 
-function clickMemberCell() {
+function onMemberCellClick() {
     var id = $(this).attr('data-id'),
         x = parseInt($(this).attr('data-x'), 10),
         y = parseInt($(this).attr('data-y'), 10),
@@ -122,14 +122,9 @@ function clickMemberCell() {
     })
 }
 
-var contentInCellBefore = {};
-
 function openCell($cell, templateId, member) {
     var template = $(templateId).html();
     var rendered = Mustache.render(template, {member: member});
-
-    contentInCellBefore[member.id] = contentInCellBefore[member.id] || {};
-    contentInCellBefore[member.id][$cell.attr('data-x') + '-' + $cell.attr('data-y')] = $cell.html();
 
     $cell.html(rendered).addClass('member_info_cell member_cell_' + member.id);
     $cell.flip({trigger: 'manual', speed: 200});
@@ -142,10 +137,6 @@ function closeCell($cell, memberId) {
     $cell.on('flip:done',function(){
         $(this).html('');
         $(this).replaceWith($(this).clone());
-        // contentInCellBefore[memberId] = contentInCellBefore[memberId] || {};
-        // contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')] =
-        //     contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')] || '';
-        // $(this).html(contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')]);
     });
 }
 
