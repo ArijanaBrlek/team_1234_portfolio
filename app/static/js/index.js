@@ -43,7 +43,27 @@ $(document).on('click','.member_cell', function(){
     template = $('#member-template-skills').html();
     rendered = Mustache.render(template, {member: member});
     $cellAbove.html(rendered).addClass('member_cell_' + id);
-    $cellAbove.find('[data-toggle="popover"]').popover();
+    var options = {
+        placement: function (context, source) {
+            var position = $(source).position();
+
+            if (position.left > 515) {
+                return "auto left";
+            }
+
+            if (position.left < 515) {
+                return "auto right";
+            }
+
+            if (position.top < 110){
+                return "auto bottom";
+            }
+
+            return "auto top";
+        }
+        , trigger: "click"
+    };
+    $cellAbove.find('[data-toggle="popover"]').popover(options);
     $cellAbove.flip({trigger: 'manual'});
     setTimeout(function() { $cellAbove.flip(true) }, 50);
 });
