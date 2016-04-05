@@ -209,6 +209,7 @@ body {
 }
 
 .custom-popover-2 {
+    border-color: #2FC26A;
     background-color: #2FC26A;
 }
 .custom-popover-2 .popover-title {
@@ -216,6 +217,7 @@ body {
 }
 
 .custom-popover-3 {
+    border-color: #FFBB40;
     background-color: #FFBB40;
 }
 .custom-popover-3 .popover-title {
@@ -223,6 +225,7 @@ body {
 }
 
 .custom-popover-4 {
+    border-color: #53A3CF;
     background-color: #53A3CF;
 }
 .custom-popover-4 .popover-title {
