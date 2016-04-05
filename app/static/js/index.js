@@ -15,7 +15,7 @@ $(document).on('click','.member_cell', function(){
         var self = this;
         setTimeout(function () {
             clickMemberCell.call(self);
-        }, 300);
+        }, 400);
     } else {
         clickMemberCell.call(this);
     }
@@ -109,7 +109,7 @@ function openCell($cell, templateId, member) {
     contentInCellBefore[member.id][$cell.attr('data-x') + '-' + $cell.attr('data-y')] = $cell.html();
 
     $cell.html(rendered).addClass('member_cell_' + member.id);
-    $cell.flip({trigger: 'manual', speed: 200});
+    $cell.flip({trigger: 'manual', speed: 350});
     setTimeout(function() { $cell.flip(true) }, 50);
 }
 
