@@ -178,18 +178,53 @@ body {
     width: 200%;
     overflow: visible;
     border-radius: 0;
+    border-width: 3px;
 }
 
 .popover-title {
-    color: darggray;
     font-size: 14px;
+    border-width: 0;
+    border-radius: 0;
+    color: white;
+    font-family: 'Courier New';
+    font-weight: bold;
 }
 
 .popover-content {
-    color: black;
     font-size: 14px;
+    font-family: 'Courier New';
+    background-color: whitesmoke;
 }
 
 .member-text-extra-large {
     font-size: 35px;
+}
+
+.custom-popover-1 {
+    border-color: #F25C5C;
+    background-color: #F25C5C;
+}
+.custom-popover-1 .popover-title {
+    background-color: #F25C5C;
+}
+
+.custom-popover-2 {
+    background-color: #2FC26A;
+}
+.custom-popover-2 .popover-title {
+    background-color: #2FC26A;
+}
+
+.custom-popover-3 {
+    background-color: #EBEB72;
+}
+.custom-popover-3 .popover-title {
+    background-color: #EBEB72;
+}
+
+.custom-popover-4 {
+    background-color: #53A3CF;
+}
+.custom-popover-4 .popover-title {
+    background-color: #53A3CF;
 }

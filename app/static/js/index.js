@@ -64,9 +64,15 @@ $(document).on('click','.member_cell', function(){
 
             return "auto top";
         }
-        , trigger: "click"
+        , 
+        trigger: "click"
     };
-    $cellAbove.find('[data-toggle="popover"]').popover(options);
+    $cellAbove.find('[data-toggle="popover"]')
+    .popover(options)
+    .data("bs.popover")
+    .tip()
+    .addClass('custom-popover custom-popover-' + id);
+
     $cellAbove.flip({trigger: 'manual'});
     setTimeout(function() { $cellAbove.flip(true) }, 50);
 
