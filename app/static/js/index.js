@@ -56,7 +56,7 @@ $(document).on('click','.member_cell', function(){
             return "auto top";
         }
         ,
-        trigger: "click"
+        trigger: "hover"
     };
 
     $cellAbove.find('[data-toggle="popover"]')
