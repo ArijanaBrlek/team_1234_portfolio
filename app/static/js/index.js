@@ -28,6 +28,9 @@ $(document).on('click','.member_cell', function(){
     var $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
     console.log("above cell", $cellAbove);
 
+    var $cellUnder = $('.cell[data-x="' + (parseInt(x, 10)+1) + '"][data-y="' + y + '"]');
+    console.log("under cell", $cellUnder);
+
     var template = $('#member-template-info').html();
     var rendered = Mustache.render(template, {member: member});
     $cellLeft.html(rendered).addClass('member_cell_' + id);
@@ -66,6 +69,12 @@ $(document).on('click','.member_cell', function(){
     $cellAbove.find('[data-toggle="popover"]').popover(options);
     $cellAbove.flip({trigger: 'manual'});
     setTimeout(function() { $cellAbove.flip(true) }, 50);
+
+    template = $('#member-template-vote').html();
+    rendered = Mustache.render(template, {member: member});
+    $cellUnder.html(rendered).addClass('member_cell_' + id);
+    $cellUnder.flip({trigger: 'manual'});
+    setTimeout(function() { $cellUnder.flip(true) }, 50);
 });
 
 var people = [];
