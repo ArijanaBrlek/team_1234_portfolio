@@ -139,7 +139,8 @@ body {
 }
 
 .member-text {
-    color: white;
+    margin-top: 5px;
+    color: black;
 }
 
 .member-text-large {
@@ -187,4 +188,8 @@ body {
 .popover-content {
     color: black;
     font-size: 14px;
+}
+
+.member-text-extra-large {
+    font-size: 35px;
 }
