@@ -28,7 +28,7 @@ function findFirstAvailableCell(x, y) {
     var $cell;
     for(var i = 0; i < 4; ++i) {
         $cell = $('.cell[data-x="' + (x+dx[i]) + '"][data-y="' + (y+dy[i]) + '"]');
-        if(!$cell.hasClass('member_cell')) {
+        if(!$cell.hasClass('member_cell') && !$cell.hasClass('member_info_cell')) {
             break;
         }
     }
@@ -52,26 +52,26 @@ function clickMemberCell() {
     trackView(member);
 
     var $cellLeft, $cellRight, $cellAbove, $cellUnder;
-    $cellLeft = $('.cell[data-x="' + (x) + '"][data-y="' + (y-1) + '"]');
-    if($cellLeft.hasClass('member_cell')) {
+    $cellLeft = $('.cell[data-x="' + x + '"][data-y="' + (y-1) + '"]');
+    if($cellLeft.hasClass('member_cell') || $cellLeft.hasClass('member_info_cell')) {
         $cellLeft = findFirstAvailableCell(x, y);
     }
     openCell($cellLeft, '#member-template-info', member);
 
-    $cellRight = $('.cell[data-x="' + (x) + '"][data-y="' + (y+1) + '"]');
-    if($cellRight.hasClass('member_cell')) {
+    $cellRight = $('.cell[data-x="' + x + '"][data-y="' + (y+1) + '"]');
+    if($cellRight.hasClass('member_cell') || $cellRight.hasClass('member_info_cell')) {
         $cellRight = findFirstAvailableCell(x, y);
     }
     openCell($cellRight, '#member-template-links', member);
 
-    $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + (y) + '"]');
-    if($cellAbove.hasClass('member_cell')) {
+    $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
+    if($cellAbove.hasClass('member_cell') || $cellAbove.hasClass('member_info_cell')) {
         $cellAbove = findFirstAvailableCell(x, y);
     }
     openCell($cellAbove, '#member-template-skills', member);
 
-    $cellUnder = $('.cell[data-x="' + (x+1) + '"][data-y="' + (y) + '"]');
-    if($cellUnder.hasClass('member_cell')) {
+    $cellUnder = $('.cell[data-x="' + (x+1) + '"][data-y="' + y + '"]');
+    if($cellUnder.hasClass('member_cell') || $cellUnder.hasClass('member_info_cell')) {
         $cellUnder = findFirstAvailableCell(x, y);
     }
     openCell($cellUnder, '#member-template-vote', member);
@@ -131,13 +131,13 @@ function openCell($cell, templateId, member) {
     contentInCellBefore[member.id] = contentInCellBefore[member.id] || {};
     contentInCellBefore[member.id][$cell.attr('data-x') + '-' + $cell.attr('data-y')] = $cell.html();
 
-    $cell.html(rendered).addClass('member_cell_' + member.id);
+    $cell.html(rendered).addClass('member_info_cell member_cell_' + member.id);
     $cell.flip({trigger: 'manual', speed: 200});
     setTimeout(function() { $cell.flip(true) }, 50);
 }
 
 function closeCell($cell, memberId) {
-    $cell.removeClass('member_cell_'  + memberId);
+    $cell.removeClass('member_info_cell member_cell_'  + memberId);
     $cell.flip(false);
     $cell.on('flip:done',function(){
         $(this).html('');
