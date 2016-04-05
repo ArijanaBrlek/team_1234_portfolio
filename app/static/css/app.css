@@ -64,7 +64,7 @@ body {
 }
 
 .member3 {
-    color: #EBEB72;
+    color: #FFBB40;
 }
 
 .member4 {
@@ -94,13 +94,13 @@ body {
 }
 
 .member_cell_3 {
-    background-color: #EBEB72;
+    background-color: #FFBB40;
     opacity: 1;
 }
 .member_cell_3:hover {
-    background-color: #EBEB72;
+    background-color: #FFBB40;
     opacity: 1;
-        border: 0px solid #EBEB72;
+    border: 0px solid #FFBB40;
     border-width: 0;
 }
 
@@ -216,10 +216,10 @@ body {
 }
 
 .custom-popover-3 {
-    background-color: #EBEB72;
+    background-color: #FFBB40;
 }
 .custom-popover-3 .popover-title {
-    background-color: #EBEB72;
+    background-color: #FFBB40;
 }
 
 .custom-popover-4 {
