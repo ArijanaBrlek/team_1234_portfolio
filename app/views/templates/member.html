@@ -1,0 +1,20 @@
+{% raw %}
+<script id="member-template" type="x-tmpl-mustache">
+  <div class="front">
+    <div>
+      <div class='col-sm-12 member_number pull-right'>
+        0{{ member.id }}
+      </div>
+      <div class='col-sm-12 member_name'>
+        {{ member.first_name }}
+        <br/>
+        <b>{{ member.last_name }}</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="back">
+     <img class='member-image' src="/static/img/member_{{ member.id }}.jpg" />
+  </div>
+</script>
+{% endraw %}

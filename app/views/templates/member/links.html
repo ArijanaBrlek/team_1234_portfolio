@@ -1,0 +1,18 @@
+{% raw %}
+    <script id="member-template-links" type="x-tmpl-mustache">
+      <div class="front">
+      </div>
+      <div class="back">
+        <div>
+            <div class='col-sm-12 center margin-top'>
+              <a href='mailto:{{ member.email }}'><i class="fa fa-envelope-o fa-3x black"></i></a>
+            </div>
+
+            <div class='col-sm-12 nopadding center margin-top'>
+                  <a href="{{ member.linkedin }}" target="_blank"><i class="fa fa-linkedin-square fa-3x black hover-expand"></i></a>
+                  <a href="{{ member.github }}" target="_blank"><i class="fa fa-github-square fa-3x black hover-expand"></i></a>
+            </div>
+        </div>
+      </div>
+    </script>
+  {% endraw %}
