@@ -10,7 +10,8 @@ $(window).resize(function() {
 $(document).on('click','.member_cell', function(){
     var id = $(this).attr('data-id'),
         x = $(this).attr('data-x'),
-        y = $(this).attr('data-y');
+        y = $(this).attr('data-y'),
+        $cell = $(this);
 
     var member;
     for(var i = 0; i < people.length; ++i) {
@@ -33,21 +34,9 @@ $(document).on('click','.member_cell', function(){
     var $cellUnder = $('.cell[data-x="' + (parseInt(x, 10)+1) + '"][data-y="' + y + '"]');
     console.log("under cell", $cellUnder);
 
-    var template = $('#member-template-info').html();
-    var rendered = Mustache.render(template, {member: member});
-    $cellLeft.html(rendered).addClass('member_cell_' + id);
-    $cellLeft.flip({trigger: 'manual'});
-    setTimeout(function() { $cellLeft.flip(true) }, 50);
-
-    template = $('#member-template-links').html();
-    rendered = Mustache.render(template, {member: member});
-    $cellRight.html(rendered).addClass('member_cell_' + id);
-    $cellRight.flip({trigger: 'manual'});
-    setTimeout(function() { $cellRight.flip(true) }, 50);
-
-    template = $('#member-template-skills').html();
-    rendered = Mustache.render(template, {member: member});
-    $cellAbove.html(rendered).addClass('member_cell_' + id);
+    openCell($cellLeft, '#member-template-info', member);
+    openCell($cellRight, '#member-template-links', member);
+    openCell($cellAbove, '#member-template-skills', member);
     var options = {
         placement: function (context, source) {
             var position = $(source).position();
@@ -69,15 +58,37 @@ $(document).on('click','.member_cell', function(){
         , trigger: "click"
     };
     $cellAbove.find('[data-toggle="popover"]').popover(options);
-    $cellAbove.flip({trigger: 'manual'});
-    setTimeout(function() { $cellAbove.flip(true) }, 50);
 
-    template = $('#member-template-vote').html();
-    rendered = Mustache.render(template, {member: member});
-    $cellUnder.html(rendered).addClass('member_cell_' + id);
-    $cellUnder.flip({trigger: 'manual'});
-    setTimeout(function() { $cellUnder.flip(true) }, 50);
+    openCell($cellUnder, '#member-template-vote', member);
+
+    var template = $('#member-template-close').html();
+    var rendered = Mustache.render(template, {member: member});
+    $cell.html(rendered);
+    $cell.find('.fa-close').click(function(event) {
+        event.stopPropagation();
+        closeCell($cellUnder, id);
+        closeCell($cellAbove, id);
+        closeCell($cellLeft, id);
+        closeCell($cellRight, id);
+    });
+
 });
+
+function openCell($cell, templateId, member) {
+    var template = $(templateId).html();
+    var rendered = Mustache.render(template, {member: member});
+    $cell.html(rendered).addClass('member_cell_' + member.id);
+    $cell.flip({trigger: 'manual'});
+    setTimeout(function() { $cell.flip(true) }, 50);
+}
+
+function closeCell($cell, memberId) {
+    $cell.removeClass('member_cell_'  + memberId);
+    $cell.flip(false);
+    $cell.on('flip:done',function(){
+        $(this).html('');
+    });
+}
 
 var people = [];
 function loadPeople() {
