@@ -19,6 +19,8 @@ $(document).on('click','.member_cell', function(){
         }
     }
 
+    trackView(member);
+
     var $cellLeft = $('.cell[data-x="' + x + '"][data-y="' + (y-1) + '"]');
     console.log("left cell", $cellLeft);
 
@@ -82,6 +84,12 @@ function loadPeople() {
     $.getJSON( "/people", function(data) {
       people = data;
       createGrid(125);
+    });
+}
+
+function trackView(member) {
+    $.post( "/upvote/" + member.id, function(data) {
+        // console.log(data);
     });
 }
 
