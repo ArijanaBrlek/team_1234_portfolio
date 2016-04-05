@@ -8,6 +8,20 @@ $(window).resize(function() {
 });
 
 $(document).on('click','.member_cell', function(){
+    if($('.close-card').length > 0) {
+        // some other card is opened, wait until animations completed before starting this
+        $('.close-card').click();
+
+        var self = this;
+        setTimeout(function () {
+            clickMemberCell.call(self);
+        }, 300);
+    } else {
+        clickMemberCell.call(this);
+    }
+});
+
+function clickMemberCell() {
     var id = $(this).attr('data-id'),
         x = $(this).attr('data-x'),
         y = $(this).attr('data-y'),
@@ -82,8 +96,8 @@ $(document).on('click','.member_cell', function(){
         $cell.replaceWith($cell.clone());
         // $cell.replaceWith("<div class='cell' data-x=" + member.x + " data-y=" + member.y + " style='width: 124px; height: 124px;'></div>");
         renderMemberCell(member);
-    });
-});
+    })
+}
 
 var contentInCellBefore = {};
 
@@ -95,7 +109,7 @@ function openCell($cell, templateId, member) {
     contentInCellBefore[member.id][$cell.attr('data-x') + '-' + $cell.attr('data-y')] = $cell.html();
 
     $cell.html(rendered).addClass('member_cell_' + member.id);
-    $cell.flip({trigger: 'manual'});
+    $cell.flip({trigger: 'manual', speed: 200});
     setTimeout(function() { $cell.flip(true) }, 50);
 }
 
