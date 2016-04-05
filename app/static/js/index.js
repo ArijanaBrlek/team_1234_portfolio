@@ -69,6 +69,7 @@ $(document).on('click','.member_cell', function(){
 
     var template = $('#member-template-close').html();
     var rendered = Mustache.render(template, {member: member});
+    $cell.off('.flip');
     $cell.html(rendered);
     $cell.find('.close-card').click(function(event) {
         event.stopPropagation();
@@ -76,12 +77,23 @@ $(document).on('click','.member_cell', function(){
         closeCell($cellAbove, id);
         closeCell($cellLeft, id);
         closeCell($cellRight, id);
+        // createGrid(125, false);
+        // $cell.html('');
+        $cell.replaceWith($cell.clone());
+        // $cell.replaceWith("<div class='cell' data-x=" + member.x + " data-y=" + member.y + " style='width: 124px; height: 124px;'></div>");
+        renderMemberCell(member);
     });
 });
+
+var contentInCellBefore = {};
 
 function openCell($cell, templateId, member) {
     var template = $(templateId).html();
     var rendered = Mustache.render(template, {member: member});
+
+    contentInCellBefore[member.id] = contentInCellBefore[member.id] || {};
+    contentInCellBefore[member.id][$cell.attr('data-x') + '-' + $cell.attr('data-y')] = $cell.html();
+
     $cell.html(rendered).addClass('member_cell_' + member.id);
     $cell.flip({trigger: 'manual'});
     setTimeout(function() { $cell.flip(true) }, 50);
@@ -92,6 +104,11 @@ function closeCell($cell, memberId) {
     $cell.flip(false);
     $cell.on('flip:done',function(){
         $(this).html('');
+        $(this).replaceWith($(this).clone());
+        // contentInCellBefore[memberId] = contentInCellBefore[memberId] || {};
+        // contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')] =
+        //     contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')] || '';
+        // $(this).html(contentInCellBefore[memberId][$cell.attr('data-x') + '-' + $cell.attr('data-y')]);
     });
 }
 
@@ -146,7 +163,7 @@ function generatePeoplePositions(cellsInRow, cellsInColumn) {
 
 
 
-function createGrid(size) {
+function createGrid(size, randomizePositions) {
     var ratioW = Math.floor($(window).width()/size),
         ratioH = Math.floor($(window).height()/size);
 
@@ -162,7 +179,9 @@ function createGrid(size) {
     var cellsInRow = ratioH + 1;
     var cellsInColumn = ratioW + 1;
 
-    generatePeoplePositions(cellsInRow, cellsInColumn);
+    if(randomizePositions || typeof(randomizePositions) === 'undefined') {
+        generatePeoplePositions(cellsInRow, cellsInColumn);
+    }
 
     for (var i = 0; i < cellsInRow; i++) {
         for(var p = 0; p < cellsInColumn; p++){
@@ -178,14 +197,18 @@ function createGrid(size) {
 
     for (var i = people.length - 1; i >= 0; i--) {
         var member = people[i];
-        var $cell = $('.cell[data-x="' + member.x + '"][data-y="' + member.y + '"]');
-        $cell.addClass('member_cell member_cell_' + member.id);
-        $cell.attr('data-id', member.id);
-        var template = $('#member-template').html();
-        var rendered = Mustache.render(template, {member: member});
-        $cell.html(rendered);
-        $cell.flip({ trigger: 'hover' });
+        renderMemberCell(member);
     };
+}
+
+function renderMemberCell(member) {
+    var $cell = $('.cell[data-x="' + member.x + '"][data-y="' + member.y + '"]');
+    $cell.addClass('member_cell member_cell_' + member.id);
+    $cell.attr('data-id', member.id);
+    var template = $('#member-template').html();
+    var rendered = Mustache.render(template, {member: member});
+    $cell.html(rendered);
+    $cell.flip({ trigger: 'hover' });
 }
 
 
