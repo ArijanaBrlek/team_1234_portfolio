@@ -33,7 +33,7 @@
       </div>
 
       <div class="back">
-       <img class='member-image' src="/static/img/member_{{ member.id }}.jpg" />
+         <img class='member-image' src="/static/img/member_{{ member.id }}.jpg" />
       </div>
     </script>
   {% endraw %}
@@ -98,11 +98,9 @@
 
    {% raw %}
     <script id="member-template-close" type="x-tmpl-mustache">
-      <div>
-        <div class='col-sm-12 center margin-top-20'>
-            <i class="fa fa-close fa-5x animated-hover"></i>
-          </div>
-      </div>
+        <div class='col-sm-12 close-card nopadding'>
+          <img class='member-image' src="/static/img/member_{{ member.id }}.jpg" />
+        </div>
     </script>
   {% endraw %}
 

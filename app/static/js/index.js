@@ -70,7 +70,7 @@ $(document).on('click','.member_cell', function(){
     var template = $('#member-template-close').html();
     var rendered = Mustache.render(template, {member: member});
     $cell.html(rendered);
-    $cell.find('.fa-close').click(function(event) {
+    $cell.find('.close-card').click(function(event) {
         event.stopPropagation();
         closeCell($cellUnder, id);
         closeCell($cellAbove, id);
