@@ -232,27 +232,6 @@ body {
     background-color: #53A3CF;
 }
 
-.close-card {
-    height: 124px;
-    width: 124px;
-    background-color: #FA6900;
-    border-radius: 5px;
-    position: relative;
-}
-
-.close-card:after {
-    position: absolute;
-    top: 20%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: "\d7"; /* use the hex value here... */
-    font-size: 150px; 
-    color: white;
-    line-height: 75px;
-    text-align: center;
-    opacity: 0.7;
-}
 
 .hover-expand:hover {
     font-size: 3.5em;
