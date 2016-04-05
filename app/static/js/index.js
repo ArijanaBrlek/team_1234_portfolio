@@ -55,9 +55,15 @@ $(document).on('click','.member_cell', function(){
 
             return "auto top";
         }
-        , trigger: "click"
+        ,
+        trigger: "click"
     };
-    $cellAbove.find('[data-toggle="popover"]').popover(options);
+
+    $cellAbove.find('[data-toggle="popover"]')
+    .popover(options)
+    .data("bs.popover")
+    .tip()
+    .addClass('custom-popover custom-popover-' + id);
 
     openCell($cellUnder, '#member-template-vote', member);
 
@@ -71,7 +77,6 @@ $(document).on('click','.member_cell', function(){
         closeCell($cellLeft, id);
         closeCell($cellRight, id);
     });
-
 });
 
 function openCell($cell, templateId, member) {
