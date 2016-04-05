@@ -28,3 +28,14 @@ def get_people():
     people = db.people.find()
     people_list  = list(people)
     return json.dumps(people_list, default=json_util.default)
+
+@app.route('/upvote/<int:id>', methods=['POST'])
+def upvote(id):
+    person = db.people.find_one({"id": int(id)})
+    if not person:
+        abort(404)
+
+    new_rank = person['rank'] + 1
+    db.people.update_one({"id": int(id)}, {"$set": {"rank": new_rank}})
+
+    return jsonify({'rank': new_rank})
