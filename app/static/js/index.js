@@ -21,10 +21,25 @@ $(document).on('click','.member_cell', function(){
     }
 });
 
+function findFirstAvailableCell(x, y) {
+    var dx = [-1, -1, 1, 1];
+    var dy = [1, -1, 1, -1];
+
+    var $cell;
+    for(var i = 0; i < 4; ++i) {
+        $cell = $('.cell[data-x="' + (x+dx[i]) + '"][data-y="' + (y+dy[i]) + '"]');
+        if(!$cell.hasClass('member_cell')) {
+            break;
+        }
+    }
+
+    return $cell;
+}
+
 function clickMemberCell() {
     var id = $(this).attr('data-id'),
-        x = $(this).attr('data-x'),
-        y = $(this).attr('data-y'),
+        x = parseInt($(this).attr('data-x'), 10),
+        y = parseInt($(this).attr('data-y'), 10),
         $cell = $(this);
 
     var member;
@@ -36,21 +51,31 @@ function clickMemberCell() {
 
     trackView(member);
 
-    var $cellLeft = $('.cell[data-x="' + x + '"][data-y="' + (y-1) + '"]');
-    console.log("left cell", $cellLeft);
-
-    var $cellRight = $('.cell[data-x="' + x + '"][data-y="' + (parseInt(y, 10)+1) + '"]');
-    console.log("right cell", $cellRight);
-
-    var $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + y + '"]');
-    console.log("above cell", $cellAbove);
-
-    var $cellUnder = $('.cell[data-x="' + (parseInt(x, 10)+1) + '"][data-y="' + y + '"]');
-    console.log("under cell", $cellUnder);
-
+    var $cellLeft, $cellRight, $cellAbove, $cellUnder;
+    $cellLeft = $('.cell[data-x="' + (x) + '"][data-y="' + (y-1) + '"]');
+    if($cellLeft.hasClass('member_cell')) {
+        $cellLeft = findFirstAvailableCell(x, y);
+    }
     openCell($cellLeft, '#member-template-info', member);
+
+    $cellRight = $('.cell[data-x="' + (x) + '"][data-y="' + (y+1) + '"]');
+    if($cellRight.hasClass('member_cell')) {
+        $cellRight = findFirstAvailableCell(x, y);
+    }
     openCell($cellRight, '#member-template-links', member);
+
+    $cellAbove = $('.cell[data-x="' + (x-1) + '"][data-y="' + (y) + '"]');
+    if($cellAbove.hasClass('member_cell')) {
+        $cellAbove = findFirstAvailableCell(x, y);
+    }
     openCell($cellAbove, '#member-template-skills', member);
+
+    $cellUnder = $('.cell[data-x="' + (x+1) + '"][data-y="' + (y) + '"]');
+    if($cellUnder.hasClass('member_cell')) {
+        $cellUnder = findFirstAvailableCell(x, y);
+    }
+    openCell($cellUnder, '#member-template-vote', member);
+
     var options = {
         placement: function (context, source) {
             var position = $(source).position();
@@ -78,8 +103,6 @@ function clickMemberCell() {
     .data("bs.popover")
     .tip()
     .addClass('custom-popover custom-popover-' + id);
-
-    openCell($cellUnder, '#member-template-vote', member);
 
     var template = $('#member-template-close').html();
     var rendered = Mustache.render(template, {member: member});
